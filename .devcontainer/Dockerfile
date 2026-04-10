@@ -52,6 +52,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && update-alternatives --install /usr/bin/run-clang-tidy run-clang-tidy /usr/bin/run-clang-tidy-22 100 \
     && update-alternatives --install /usr/bin/clang-tidy-diff clang-tidy-diff /usr/bin/clang-tidy-diff-22.py 100
 
+# Emscripten.
+ARG EMSDK_VERSION=latest
+RUN git clone https://github.com/emscripten-core/emsdk.git /opt/emsdk \
+    && /opt/emsdk/emsdk install ${EMSDK_VERSION} \
+    && /opt/emsdk/emsdk activate ${EMSDK_VERSION} \
+    && nodeBin="$(find /opt/emsdk/node -type f -path '*/bin/node' | head -n 1)" \
+    && test -n "${nodeBin}" \
+    && ln -sf "${nodeBin}" /usr/local/bin/node
+
+ENV EMSDK=/opt/emsdk
+ENV EMSCRIPTEN_ROOT=/opt/emsdk/upstream/emscripten
+ENV PATH=${EMSDK}:${EMSCRIPTEN_ROOT}:${PATH}
+
 # Raylib
 RUN apt-get update && apt-get install -y \
     libxinerama-dev libxcursor-dev \

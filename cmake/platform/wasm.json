@@ -1,0 +1,65 @@
+{
+    "version": 7,
+    "include": [
+        "../compiler/emcc.json",
+        "../config/binaryDir.json",
+        "../config/debug.json",
+        "../config/ninja.json",
+        "../config/release.json",
+        "../config/vcpkg.json",
+        "../host/x64-linux.json",
+        "../target/wasm32-emscripten.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "x64-linux-emcc-debug",
+            "inherits": [
+                "config-binaryDir",
+                "config-debug",
+                "config-ninja",
+                "config-vcpkg",
+                "compiler-emcc",
+                "host-x64-linux",
+                "target-wasm32-emscripten"
+            ]
+        },
+        {
+            "name": "x64-linux-emcc-release",
+            "inherits": [
+                "config-binaryDir",
+                "config-release",
+                "config-ninja",
+                "config-vcpkg",
+                "compiler-emcc",
+                "host-x64-linux",
+                "target-wasm32-emscripten"
+            ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "x64-linux-emcc-debug",
+            "configurePreset": "x64-linux-emcc-debug"
+        },
+        {
+            "name": "x64-linux-emcc-release",
+            "configurePreset": "x64-linux-emcc-release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "x64-linux-emcc-debug",
+            "configurePreset": "x64-linux-emcc-debug",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "x64-linux-emcc-release",
+            "configurePreset": "x64-linux-emcc-release",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ]
+}

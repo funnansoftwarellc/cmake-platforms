@@ -6,6 +6,9 @@
     "homepage": "https://github.com/funnansoftwarellc/cmake-platforms",
     "dependencies": [
         "raylib",
-        "glfw3"
+        {
+            "name": "glfw3",
+            "platform": "!emscripten"
+        }
     ]
 }

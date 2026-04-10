@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/dev/cmake-platforms/build/x64-windows-msvc-release/cmake_install.cmake",
+		"D:/dev/cmake-platforms/build/x64-windows-msvc-release/app/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

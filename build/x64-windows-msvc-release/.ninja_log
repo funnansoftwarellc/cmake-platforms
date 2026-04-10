@@ -1,0 +1,10 @@
+# ninja log v7
+2	137	7975554993870892	app/CMakeFiles/hello-world.dir/main.cpp.obj.ddi	e7748ccf6ebd97fc
+3	27	7975569346636374	app/CMakeFiles/hello-world.dir/CXX.dd	37bd2636cca7dcfc
+3	27	7975569346636374	app/CMakeFiles/hello-world.dir/CXXModules.json	37bd2636cca7dcfc
+3	27	7975569346636374	app/CMakeFiles/hello-world.dir/main.cpp.obj.modmap	37bd2636cca7dcfc
+178	1008	7975554995621561	app/CMakeFiles/hello-world.dir/main.cpp.obj	83f7471254e5c20b
+1008	1122	7975555003921123	app/hello-world.exe	b6c61bb954aa9d52
+3	27	7975572468639586	app/CMakeFiles/hello-world.dir/CXX.dd	37bd2636cca7dcfc
+3	27	7975572468639586	app/CMakeFiles/hello-world.dir/CXXModules.json	37bd2636cca7dcfc
+3	27	7975572468639586	app/CMakeFiles/hello-world.dir/main.cpp.obj.modmap	37bd2636cca7dcfc

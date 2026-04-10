@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "app\\CMakeFiles\\hello-world.dir\\main.cpp.obj",
+            "outputs": [
+                "D:\\dev\\cmake-platforms\\build\\x64-windows-msvc-debug\\vc140.pdb",
+                "app\\CMakeFiles\\hello-world.dir\\main.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}

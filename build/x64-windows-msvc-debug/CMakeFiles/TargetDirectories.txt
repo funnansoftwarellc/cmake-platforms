@@ -1,0 +1,5 @@
+D:/dev/cmake-platforms/build/x64-windows-msvc-debug/CMakeFiles/edit_cache.dir
+D:/dev/cmake-platforms/build/x64-windows-msvc-debug/CMakeFiles/rebuild_cache.dir
+D:/dev/cmake-platforms/build/x64-windows-msvc-debug/app/CMakeFiles/hello-world.dir
+D:/dev/cmake-platforms/build/x64-windows-msvc-debug/app/CMakeFiles/edit_cache.dir
+D:/dev/cmake-platforms/build/x64-windows-msvc-debug/app/CMakeFiles/rebuild_cache.dir

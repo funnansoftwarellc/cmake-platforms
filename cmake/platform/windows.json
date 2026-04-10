@@ -1,0 +1,56 @@
+{
+    "version": 7,
+    "include": [
+        "../compiler/msvc.json",
+        "../config/binaryDir.json",
+        "../config/debug.json",
+        "../config/ninja.json",
+        "../config/release.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "x64-windows-msvc-debug",
+            "inherits": [
+                "config-binaryDir",
+                "config-debug",
+                "config-ninja",
+                "compiler-msvc"
+            ]
+        },
+        {
+            "name": "x64-windows-msvc-release",
+            "inherits": [
+                "config-binaryDir",
+                "config-release",
+                "config-ninja",
+                "compiler-msvc"
+            ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "x64-windows-msvc-debug",
+            "configurePreset": "x64-windows-msvc-debug"
+        },
+        {
+            "name": "x64-windows-msvc-release",
+            "configurePreset": "x64-windows-msvc-release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "x64-windows-msvc-debug",
+            "configurePreset": "x64-windows-msvc-debug",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "x64-windows-msvc-release",
+            "configurePreset": "x64-windows-msvc-release",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ]
+}

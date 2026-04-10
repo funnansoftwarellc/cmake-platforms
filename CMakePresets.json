@@ -1,6 +1,7 @@
 {
     "version": 7,
     "include": [
+        "./cmake/platform/linux.json",
         "./cmake/platform/windows.json"
     ]
 }

@@ -1,0 +1,15 @@
+{
+    "version": 7,
+    "configurePresets": [
+        {
+            "name": "compiler-gcc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Werror -pedantic"
+            }
+        }
+    ]
+}

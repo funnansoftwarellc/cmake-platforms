@@ -5,25 +5,34 @@
         "../config/binaryDir.json",
         "../config/debug.json",
         "../config/ninja.json",
-        "../config/release.json"
+        "../config/release.json",
+        "../config/vcpkg.json",
+        "../host/x64-windows.json",
+        "../target/x64-windows.json"
     ],
     "configurePresets": [
         {
             "name": "x64-windows-msvc-debug",
             "inherits": [
+                "compiler-msvc",
                 "config-binaryDir",
                 "config-debug",
                 "config-ninja",
-                "compiler-msvc"
+                "config-vcpkg",
+                "host-x64-windows",
+                "target-x64-windows"
             ]
         },
         {
             "name": "x64-windows-msvc-release",
             "inherits": [
+                "compiler-msvc",
                 "config-binaryDir",
-                "config-release",
                 "config-ninja",
-                "compiler-msvc"
+                "config-release",
+                "config-vcpkg",
+                "host-x64-windows",
+                "target-x64-windows"
             ]
         }
     ],

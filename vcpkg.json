@@ -1,0 +1,10 @@
+{
+    "name": "cmake-platforms",
+    "version-string": "2026.4.10",
+    "port-version": 1,
+    "description": "CMake presets for various platforms and configurations.",
+    "homepage": "https://github.com/funnansoftwarellc/cmake-platforms",
+    "dependencies": [
+        "raylib"
+    ]
+}

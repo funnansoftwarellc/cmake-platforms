@@ -7,8 +7,10 @@ target_sources(${PROJECT_NAME}
         main.cpp
 )
 
+find_package(glfw3 CONFIG REQUIRED)
 find_package(raylib CONFIG REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     raylib
+    glfw
 )

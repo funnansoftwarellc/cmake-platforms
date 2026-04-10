@@ -1,12 +1,15 @@
 {
     "version": 7,
     "include": [
-        "../compiler/gcc.json",
         "../compiler/clang.json",
+        "../compiler/gcc.json",
         "../config/binaryDir.json",
         "../config/debug.json",
         "../config/ninja.json",
-        "../config/release.json"
+        "../config/release.json",
+        "../config/vcpkg.json",
+        "../host/x64-linux.json",
+        "../target/x64-linux.json"
     ],
     "configurePresets": [
         {
@@ -15,7 +18,10 @@
                 "config-binaryDir",
                 "config-debug",
                 "config-ninja",
-                "compiler-gcc"
+                "config-vcpkg",
+                "compiler-gcc",
+                "host-x64-linux",
+                "target-x64-linux"
             ]
         },
         {
@@ -24,7 +30,10 @@
                 "config-binaryDir",
                 "config-release",
                 "config-ninja",
-                "compiler-gcc"
+                "config-vcpkg",
+                "compiler-gcc",
+                "host-x64-linux",
+                "target-x64-linux"
             ]
         },
         {
@@ -33,7 +42,10 @@
                 "config-binaryDir",
                 "config-debug",
                 "config-ninja",
-                "compiler-clang"
+                "config-vcpkg",
+                "compiler-clang",
+                "host-x64-linux",
+                "target-x64-linux"
             ]
         },
         {
@@ -42,7 +54,10 @@
                 "config-binaryDir",
                 "config-release",
                 "config-ninja",
-                "compiler-clang"
+                "config-vcpkg",
+                "compiler-clang",
+                "host-x64-linux",
+                "target-x64-linux"
             ]
         }
     ],

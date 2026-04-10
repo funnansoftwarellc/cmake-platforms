@@ -5,6 +5,7 @@
     "description": "CMake presets for various platforms and configurations.",
     "homepage": "https://github.com/funnansoftwarellc/cmake-platforms",
     "dependencies": [
-        "raylib"
+        "raylib",
+        "glfw3"
     ]
 }

@@ -8,7 +8,7 @@
         "raylib",
         {
             "name": "glfw3",
-            "platform": "!emscripten"
+            "platform": "!emscripten & !android"
         }
     ]
 }

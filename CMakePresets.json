@@ -1,6 +1,7 @@
 {
     "version": 7,
     "include": [
+        "./cmake/platform/android.json",
         "./cmake/platform/linux.json",
         "./cmake/platform/wasm.json",
         "./cmake/platform/windows.json"

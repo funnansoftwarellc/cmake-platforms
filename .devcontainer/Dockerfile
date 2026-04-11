@@ -16,8 +16,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     xz-utils \
     tar \
-    openjdk-17-jdk \
-    usbutils \
     && rm -rf /var/lib/apt/lists/*
 
 # GCC 15.
@@ -61,11 +59,86 @@ RUN git clone https://github.com/emscripten-core/emsdk.git /opt/emsdk \
     && test -n "${nodeBin}" \
     && ln -sf "${nodeBin}" /usr/local/bin/node
 
+# Emulator runtime dependencies.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpulse0 \
+    libgl1 \
+    libnss3 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxi6 \
+    libxtst6 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    openjdk-17-jdk \
+    usbutils \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+# Android SDK command line tools.
+RUN mkdir -p /opt/android/sdk \
+    && curl -fsSLo /tmp/commandlinetools.zip https://dl.google.com/android/repository/commandlinetools-linux-14742923_latest.zip \
+    && unzip -qq /tmp/commandlinetools.zip -d /opt/android/sdk \
+    && rm -f /tmp/commandlinetools.zip
+
+ENV ANDROID_HOME=/opt/android/sdk
+
+RUN mkdir -p /opt/android/sdk/cmdline-tools/latest \
+    && mv /opt/android/sdk/cmdline-tools/bin /opt/android/sdk/cmdline-tools/latest/ \
+    && mv /opt/android/sdk/cmdline-tools/lib /opt/android/sdk/cmdline-tools/latest/ \
+    && mv /opt/android/sdk/cmdline-tools/NOTICE.txt /opt/android/sdk/cmdline-tools/latest/ \
+    && mv /opt/android/sdk/cmdline-tools/source.properties /opt/android/sdk/cmdline-tools/latest/ \
+    && yes | /opt/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses \
+    && /opt/android/sdk/cmdline-tools/latest/bin/sdkmanager \
+    "platforms;android-36" \
+    "build-tools;36.0.0" \
+    "platform-tools" \
+    "emulator" \
+    "system-images;android-36.1;google_apis;x86_64"
+
+# Create a default AVD for emulator usage inside the container.
+RUN $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd \
+    -n pixel_avd \
+    -k "system-images;android-36.1;google_apis;x86_64" \
+    --device "pixel_6" \
+    --force
+
+# Android NDK r29.
+ARG NDK_VERSION=r29
+RUN mkdir -p /opt/android/ndk/android-ndk-${NDK_VERSION} \
+    && curl -fsSLo /tmp/ndk.zip https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux.zip \
+    && unzip -q /tmp/ndk.zip -d /opt/android/ndk \
+    && rm /tmp/ndk.zip
+
+# Gradle (latest from https://gradle.org/releases/).
+ARG GRADLE_VERSION=9.4.1
+RUN curl -fsSLo /tmp/gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+    && unzip -q /tmp/gradle.zip -d /opt \
+    && ln -sf /opt/gradle-${GRADLE_VERSION}/bin/gradle /usr/local/bin/gradle \
+    && rm /tmp/gradle.zip
+
+ENV ANDROID_NDK_HOME=/opt/android/ndk/android-ndk-${NDK_VERSION}
+
 ENV EMSDK=/opt/emsdk
 ENV EMSCRIPTEN_ROOT=/opt/emsdk/upstream/emscripten
-ENV PATH=${EMSDK}:${EMSCRIPTEN_ROOT}:${PATH}
+ENV PATH=${EMSDK}:${EMSCRIPTEN_ROOT}:${ANDROID_HOME}/emulator:${ANDROID_HOME}/platform-tools:${ANDROID_NDK_HOME}:${PATH}
 
 # Raylib
 RUN apt-get update && apt-get install -y \
     libxinerama-dev libxcursor-dev \
     xorg-dev libglu1-mesa-dev pkg-config
+
+# Debug keystore so Android debug builds work without extra setup.
+RUN mkdir -p /root/.android \
+    && keytool -genkeypair \
+    -v \
+    -keystore /root/.android/debug.keystore \
+    -storepass android \
+    -alias androiddebugkey \
+    -keypass android \
+    -keyalg RSA \
+    -keysize 2048 \
+    -validity 10000 \
+    -dname "CN=Android Debug, O=Android, C=US"

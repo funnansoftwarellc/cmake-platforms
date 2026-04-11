@@ -6,4 +6,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 project(cmake-platforms)
 
+include(cmake/build-apk.cmake)
+
 add_subdirectory(app)

@@ -1,0 +1,65 @@
+{
+    "version": 7,
+    "include": [
+        "../compiler/android-ndk.json",
+        "../config/binaryDir.json",
+        "../config/debug.json",
+        "../config/ninja.json",
+        "../config/release.json",
+        "../config/vcpkg.json",
+        "../host/x64-linux.json",
+        "../target/arm64-android.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "x64-linux-android-ndk-debug",
+            "inherits": [
+                "config-binaryDir",
+                "config-debug",
+                "config-ninja",
+                "config-vcpkg",
+                "compiler-android-ndk",
+                "host-x64-linux",
+                "target-arm64-android"
+            ]
+        },
+        {
+            "name": "x64-linux-android-ndk-release",
+            "inherits": [
+                "config-binaryDir",
+                "config-release",
+                "config-ninja",
+                "config-vcpkg",
+                "compiler-android-ndk",
+                "host-x64-linux",
+                "target-arm64-android"
+            ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "x64-linux-android-ndk-debug",
+            "configurePreset": "x64-linux-android-ndk-debug"
+        },
+        {
+            "name": "x64-linux-android-ndk-release",
+            "configurePreset": "x64-linux-android-ndk-release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "x64-linux-android-ndk-debug",
+            "configurePreset": "x64-linux-android-ndk-debug",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "x64-linux-android-ndk-release",
+            "configurePreset": "x64-linux-android-ndk-release",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ]
+}

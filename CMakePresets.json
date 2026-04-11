@@ -3,6 +3,7 @@
     "include": [
         "./cmake/platform/android.json",
         "./cmake/platform/linux.json",
+        "./cmake/platform/macos.json",
         "./cmake/platform/wasm.json",
         "./cmake/platform/windows.json"
     ]

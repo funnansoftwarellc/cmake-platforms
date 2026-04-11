@@ -1,0 +1,65 @@
+{
+    "version": 7,
+    "include": [
+        "../compiler/homebrew-clang.json",
+        "../config/binaryDir.json",
+        "../config/debug.json",
+        "../config/ninja.json",
+        "../config/release.json",
+        "../config/vcpkg.json",
+        "../host/arm64-macos.json",
+        "../target/arm64-macos.json"
+    ],
+    "configurePresets": [
+        {
+            "name": "arm64-macos-clang-debug",
+            "inherits": [
+                "compiler-homebrew-clang",
+                "config-binaryDir",
+                "config-debug",
+                "config-ninja",
+                "config-vcpkg",
+                "host-arm64-macos",
+                "target-arm64-macos"
+            ]
+        },
+        {
+            "name": "arm64-macos-clang-release",
+            "inherits": [
+                "compiler-homebrew-clang",
+                "config-binaryDir",
+                "config-ninja",
+                "config-release",
+                "config-vcpkg",
+                "host-arm64-macos",
+                "target-arm64-macos"
+            ]
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "arm64-macos-clang-debug",
+            "configurePreset": "arm64-macos-clang-debug"
+        },
+        {
+            "name": "arm64-macos-clang-release",
+            "configurePreset": "arm64-macos-clang-release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "arm64-macos-clang-debug",
+            "configurePreset": "arm64-macos-clang-debug",
+            "output": {
+                "outputOnFailure": true
+            }
+        },
+        {
+            "name": "arm64-macos-clang-release",
+            "configurePreset": "arm64-macos-clang-release",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ]
+}

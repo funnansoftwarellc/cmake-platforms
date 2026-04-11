@@ -1,0 +1,12 @@
+{
+    "version": 7,
+    "configurePresets": [
+        {
+            "name": "target-arm64-macos",
+            "hidden": true,
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "arm64-osx"
+            }
+        }
+    ]
+}

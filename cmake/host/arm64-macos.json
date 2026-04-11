@@ -1,0 +1,17 @@
+{
+    "version": 7,
+    "configurePresets": [
+        {
+            "name": "host-arm64-macos",
+            "hidden": true,
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            },
+            "cacheVariables": {
+                "VCPKG_HOST_TRIPLET": "arm64-osx"
+            }
+        }
+    ]
+}
